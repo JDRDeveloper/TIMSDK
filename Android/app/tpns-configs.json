@@ -1,0 +1,13 @@
+{
+    "tpns": {
+        "access_id": "1500013388",
+        "access_key": "ASJNACOFLZYR"
+    },
+    "com.tencent.qcloud.tim.tuikit": {
+        "channel": {
+            "enable": true
+        }
+    },
+    "debug": false,
+    "version": "1.2.0.3"
+}

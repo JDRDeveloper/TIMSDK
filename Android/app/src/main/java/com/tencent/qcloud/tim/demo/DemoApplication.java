@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -12,6 +13,9 @@ import com.heytap.msp.push.HeytapPushManager;
 import com.huawei.hms.push.HmsMessaging;
 import com.meizu.cloud.pushsdk.PushManager;
 import com.meizu.cloud.pushsdk.util.MzSystemUtils;
+import com.tencent.android.tpush.XGIOperateCallback;
+import com.tencent.android.tpush.XGPushConfig;
+import com.tencent.android.tpush.XGPushManager;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.imsdk.TIMManager;
 import com.tencent.imsdk.v2.V2TIMCallback;
@@ -106,6 +110,19 @@ public class DemoApplication extends Application {
                     });
         };
 
+        XGPushConfig.enableDebug(this,true);
+        XGPushManager.registerPush(this, new XGIOperateCallback() {
+            @Override
+            public void onSuccess(Object data, int flag) {
+                //token在设备卸载重装的时候有可能会变
+                Log.d("TPush", "注册成功，设备token为：" + data);
+            }
+
+            @Override
+            public void onFail(Object data, int errCode, String msg) {
+                Log.d("TPush", "注册失败，错误码：" + errCode + ",错误信息：" + msg);
+            }
+        });
         registerActivityLifecycleCallbacks(new StatisticActivityLifecycleCallback());
 
 //        if (BuildConfig.DEBUG) {

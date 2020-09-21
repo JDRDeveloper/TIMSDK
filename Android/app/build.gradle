@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.huawei.agconnect'
+apply plugin: "com.tencent.android.tpns"
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
